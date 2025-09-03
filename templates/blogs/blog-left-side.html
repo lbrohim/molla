@@ -1,0 +1,71 @@
+{% load static %}
+<aside class="col-lg-3">
+    <div class="sidebar">
+        <div class="widget widget-search">
+            <h3 class="widget-title">Search</h3><!-- End .widget-title -->
+
+            <form action="#">
+                <label for="ws" class="sr-only">Search in blog</label>
+                <input type="search" class="form-control" name="ws" id="ws"
+                       placeholder="Search in blog" required>
+                <button type="submit" class="btn"><i class="icon-search"></i><span class="sr-only">Search</span>
+                </button>
+            </form>
+        </div><!-- End .widget -->
+
+        <div class="widget widget-cats">
+            <h3 class="widget-title">Categories</h3><!-- End .widget-title -->
+
+            <ul>
+                {% for cat in categories %}
+                    <li><a href="#">{{ cat.title }}<span>
+                                            {{ cat.blogs.count }}
+                                        </span></a></li>
+                {% endfor %}
+            </ul>
+        </div><!-- End .widget -->
+
+        <div class="widget">
+            <h3 class="widget-title">Popular Posts</h3><!-- End .widget-title -->
+
+            <ul class="posts-list">
+                {% for p_blog in most_popular_blogs %}
+                    <li>
+                        <figure>
+                            <a href="#">
+                                <img src="{{ p_blog.image.url }}"
+                                     alt="post">
+                            </a>
+                        </figure>
+
+                        <div>
+                            <span>{{ p_blog.created_at|date:'M d, Y' }}</span>
+                            <h4><a href="{% url 'blogs:detail' pk=p_blog.id %}">{{ p_blog.title }}</a></h4>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul><!-- End .posts-list -->
+        </div><!-- End .widget -->
+
+        <div class="widget widget-banner-sidebar">
+            <div class="banner-sidebar-title">ad box 280 x 280</div><!-- End .ad-title -->
+
+            <div class="banner-sidebar banner-overlay">
+                <a href="#">
+                    <img src="{% static 'assets/images/blog/sidebar/banner.jpg' %}" alt="banner">
+                </a>
+            </div><!-- End .banner-ad -->
+        </div><!-- End .widget -->
+
+        <div class="widget">
+            <h3 class="widget-title">Browse Tags</h3><!-- End .widget-title -->
+
+            <div class="tagcloud">
+                {% for tag in tags %}
+                    <a href="#">{{ tag.title }}</a>
+                {% endfor %}
+            </div><!-- End .tagcloud -->
+        </div><!-- End .widget -->
+    </div><!-- End .sidebar -->
+</aside><!-- End .col-lg-3 -->
+
