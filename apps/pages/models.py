@@ -29,3 +29,4 @@ class ContactModel(BaseModel):
     class Meta:
         verbose_name = 'Contact'
         verbose_name_plural = 'Contacts'
+

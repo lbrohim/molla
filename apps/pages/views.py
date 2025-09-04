@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect
+from unicodedata import category
 
 from apps.pages.forms import ContactForm
+from apps.pages.models import ProductModel, ProductCategory
 
 
 def home_page_view(request):
     return render(request, 'home.html')
+
+
+
+
+
 
 
 def contact_page_view(request):
